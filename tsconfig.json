@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "noImplicitAny": false,
+        "outDir": "built",
+        "rootDir": ".",
+        "skipLibCheck": true,
+        "noLib": true
+    },
+    "include": [
+        "main.ts",
+        "pxt-microbit.d.ts"
+    ],
+    "exclude": ["pxt_modules/**/*test.ts"]
+}
