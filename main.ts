@@ -1,6 +1,7 @@
 /*
 Shenzhen ACEBOTT Tech
 modified from liusen
+developed by imake
 load dependency
 "TinkerBott": "file:../pxt-TinkerBott"
 */
@@ -51,9 +52,9 @@ const enum IR_Button {
 }
 
 const enum IR_ButtonAction {
-    //% block="กด"
+    //% block="Pressed"
     Pressed = 0,
-    //% block="ปล่อย"
+    //% block="Released"
     Released = 1,
 }
 
@@ -93,9 +94,9 @@ enum DigitalWritePin {
 }
 
 enum DistanceUnit {
-    //% block="ซม."
+    //% block="cm"
     CM = 0,
-    //% block="นิ้ว"
+    //% block="inch"
     INCH = 1
 }
 
@@ -440,11 +441,11 @@ namespace TinkerBott {
     }
 
     //% blockId=IR_onButton
-    //% block="เมื่อรีโมท IR ปุ่ม | %button | ถูก%action"
+    //% block="on IR button | %button | %action"
     //% button.fieldEditor="gridpicker"
     //% button.fieldOptions.columns=3
     //% button.fieldOptions.tooltips="false"
-    //% group="ตัวรับสัญญาณ IR"
+    //% group="IR Receiver"
     export function IR_onButton(
         button: IR_Button,
         action: IR_ButtonAction,
@@ -461,11 +462,11 @@ namespace TinkerBott {
 
 
     //% blockId=IR_DecodeResult
-    //% block="รหัสปุ่มรีโมท IR ที่รับได้คือ %button"
+    //% block="IR button code %button"
     //% button.fieldEditor="gridpicker"
     //% button.fieldOptions.columns=3
     //% button.fieldOptions.tooltips="false"
-    //% group="ตัวรับสัญญาณ IR"
+    //% group="IR Receiver"
     export function IR_isDecodeResult(button: IR_Button): boolean {
         let d = -1
         basic.pause(0); // ยอมให้พื้นหลังทำงานเมื่อเรียกในลูปที่ทำงานต่อเนื่อง
@@ -478,8 +479,8 @@ namespace TinkerBott {
     }
 
     //% blockId=IR_isReceived
-    //% block="เมื่อได้รับข้อมูลรีโมท IR"
-    //% group="ตัวรับสัญญาณ IR"
+    //% block="on IR received"
+    //% group="IR Receiver"
     export function IR_isReceived(): boolean {
         basic.pause(0); // ยอมให้พื้นหลังทำงานเมื่อเรียกในลูปที่ทำงานต่อเนื่อง
         initIrState();
@@ -500,7 +501,7 @@ namespace TinkerBott {
     // //% button.fieldOptions.columns=3
     // //% button.fieldOptions.tooltips="false"
     // //% block="IR button code %button"
-    // //% group="ตัวรับสัญญาณ IR"
+    // //% group="IR Receiver"
     // export function IR_ButtonCode(button: IR_Button): number {
     //   basic.pause(0); // ยอมให้พื้นหลังทำงานเมื่อเรียกในลูปที่ทำงานต่อเนื่อง
     //   return button as number;
@@ -521,11 +522,11 @@ namespace TinkerBott {
     }
 
     //% blockId="IRReceiver_init"
-    //% block="ตั้งค่าตัวรับสัญญาณ IR ที่ขา %pin"
+    //% block="connect IR receiver to %pin"
     //% pin.fieldEditor="gridpicker"
     //% pin.fieldOptions.columns=4
     //% pin.fieldOptions.tooltips="false"
-    //% group="ตัวรับสัญญาณ IR"
+    //% group="IR Receiver"
     export function IRReceiver_init(pin: DigitalPin): void {
         initIrState();
 
@@ -542,8 +543,8 @@ namespace TinkerBott {
     // สิ้นสุดส่วนตัวรับสัญญาณ IR
 
 
-    //% blockId=ledMatrixShowHex block="หน้าจอ LED แสดงเลขฐานสิบหก %hex_num"
-    //% group="หน้าจอ LED Matrix"
+    //% blockId=ledMatrixShowHex block="LED Matrix show hex %hex_num"
+    //% group="LED Matrix"
     export function ledMatrixShowHex(hex_num: number): void {
         for (let i = 0; i < 25; i += 5) {
             for (let j = 0; j < 5; j++) {
@@ -573,10 +574,10 @@ namespace TinkerBott {
     // เริ่มต้นเซ็นเซอร์อัลตราโซนิก
 
     //% blockId="ultrasonic_distance"
-    //% block="เซ็นเซอร์อัลตราโซนิก ขา Echo|%echo|ขา Trig|%trig|อ่านระยะทางเป็น %unit"
+    //% block="Ultrasonic distance echo|%echo|trig|%trig|unit %unit"
     //% echo.defl=DigitalPin.P0
     //% trig.defl=DigitalWritePin.P1
-    //% group="เซ็นเซอร์อัลตราโซนิก"
+    //% group="Ultrasonic Sensor"
     export function UltrasonicDistance(echo: DigitalPin, trig: DigitalWritePin, unit: DistanceUnit): number {
         let trigPin = getDigitalPin(trig)
         // ส่งสัญญาณพัลส์ (Pulse)
@@ -609,18 +610,18 @@ namespace TinkerBott {
 
     // เริ่มต้นส่วนรถไมโครบิต
     export enum RGBLights {
-        //% blockId="Right_RGB" block="ขวา"
+        //% blockId="Right_RGB" block="Right"
         RGB_R = 1,
-        //% blockId="Left_RGB" block="ซ้าย"
+        //% blockId="Left_RGB" block="Left"
         RGB_L = 2,
-        //% blockId="ALL" block="ทั้งหมด"
+        //% blockId="ALL" block="All"
         ALL = 3
     }
 
-    //% blockId=colorLight block="ตั้งค่าไฟ LED %light เป็นสี $color"
+    //% blockId=colorLight block="set LED %light color $color"
     //% color.shadow="colorNumberPicker"
     //% weight=65
-    //% group="รถไมโครบิต"
+    //% group="Microbit Car"
     export function colorLight(light: RGBLights, color: number): void {
         let r: number, g: number, b: number;
         r = (color >> 16) & 0xFF; // ดึงค่าสีแดง
@@ -631,12 +632,12 @@ namespace TinkerBott {
 
 
     //% inlineInputMode=inline
-    //% blockId=singleheadlights block="ตั้งค่าไฟ LED %light ด้วยสี R:%r G:%g B:%b"
+    //% blockId=singleheadlights block="set LED %light color R:%r G:%g B:%b"
     //% r.min=0 r.max=255
     //% g.min=0 g.max=255
     //% b.min=0 b.max=255
     //% weight=60
-    //% group="รถไมโครบิต"
+    //% group="Microbit Car"
     export function singleheadlights(light: RGBLights, r: number, g: number, b: number): void {
         let buf = pins.createBuffer(5);
 
@@ -662,18 +663,18 @@ namespace TinkerBott {
     }
 
     export enum Direction {
-        //% block="เดินหน้า" enumval=0
+        //% block="Forward" enumval=0
         forward,
-        //% block="ถอยหลัง" enumval=1
+        //% block="Backward" enumval=1
         backward,
-        //% block="ซ้าย" enumval=2
+        //% block="Left" enumval=2
         left,
-        //% block="ขวา" enumval=3
+        //% block="Right" enumval=3
         right
     }
 
-    //% blockId=stopcar block="หยุดรถ"
-    //% group="รถไมโครบิต"
+    //% blockId=stopcar block="stop car"
+    //% group="Microbit Car"
     //% weight=70
     export function stopcar(): void {
         let buf = pins.createBuffer(5);
@@ -691,7 +692,7 @@ namespace TinkerBott {
     //% lspeed.min=-100 lspeed.max=100
     //% rspeed.min=-100 rspeed.max=100
     //% weight=100
-    //% group="รถไมโครบิต"
+    //% group="Microbit Car"
     export function motors(lspeed: number = 0, rspeed: number = 0): void {
         let buf = pins.createBuffer(5);
 
@@ -748,11 +749,11 @@ namespace TinkerBott {
         }
     }
 
-    //% blockId=moveTime block="เคลื่อนที่ %dir | ความเร็ว %speed | เป็นเวลา %duration ms"
+    //% blockId=moveTime block="move %dir | speed %speed | for %duration ms"
     //% weight=100
     //% speed.min=0 speed.max=100
     //% duration.shadow="timePicker"
-    //% group="รถไมโครบิต"
+    //% group="Microbit Car"
     export function moveTime(dir: Direction, speed: number = 50, duration: number = 0): void {
 
         let buf = pins.createBuffer(5);
@@ -807,14 +808,14 @@ namespace TinkerBott {
     }
 
     export enum MbPins {
-        //% block="ซ้าย" 
+        //% block="Left" 
         Left = 0,
-        //% block="ขวา" 
+        //% block="Right" 
         Right = 1
     }
 
-    //% blockId=tracking block="อ่านค่าเซ็นเซอร์เดินตามเส้นฝั่ง %side"
-    //% group="รถไมโครบิต"
+    //% blockId=tracking block="read tracking sensor %side"
+    //% group="Microbit Car"
     //% weight=45
     export function tracking(side: MbPins): number {
         pins.setPull(AnalogPin.P0, PinPullMode.PullUp);
@@ -844,13 +845,13 @@ namespace TinkerBott {
         x,
         //% block="Y" enumval=1
         y,
-        //% block="ปุ่มกด" enumval=2
+        //% block="Key" enumval=2
         key,
     }
 
 
-    //% blockId=joystick block="อ่านค่าจอยสติ๊กแกน %dir "
-    //% group="รีโมทคอนโทรลเลอร์"
+    //% blockId=joystick block="read joystick %dir"
+    //% group="Remote Controller"
     export function joystick(dir: Rocker): number {
         switch (dir) {
             case Rocker.x:
@@ -867,18 +868,18 @@ namespace TinkerBott {
     }
 
     export enum Four_key {
-        //% block="บน" enumval=0
+        //% block="Up" enumval=0
         up,
-        //% block="ล่าง" enumval=1
+        //% block="Down" enumval=1
         down,
-        //% block="ซ้าย" enumval=2
+        //% block="Left" enumval=2
         left,
-        //% block="ขวา" enumval=3
+        //% block="Right" enumval=3
         right
     }
 
-    //% blockId=Four_bit_key block="อ่านค่าปุ่มทิศทาง %dir"
-    //% group="รีโมทคอนโทรลเลอร์"
+    //% blockId=Four_bit_key block="read button %dir"
+    //% group="Remote Controller"
     export function Four_bit_key(dir: Four_key): boolean {
         // ตั้งค่าความต้านทานแบบ PullUp ให้กับขา
         pins.setPull(DigitalPin.P13, PinPullMode.PullUp)
@@ -903,15 +904,15 @@ namespace TinkerBott {
 
 
     export enum Vibration_motor_condition {
-        //% block="เปิด" enumval=0
+        //% block="ON" enumval=0
         on,
-        //% block="ปิด" enumval=1
+        //% block="OFF" enumval=1
         off,
     }
 
     // ควบคุมมอเตอร์สั่น
-    //% blockId=Vibrating_machine block="มอเตอร์สั่น %condition"
-    //% group="รีโมทคอนโทรลเลอร์"
+    //% blockId=Vibrating_machine block="vibration motor %condition"
+    //% group="Remote Controller"
     export function Vibrating_machine(condition: Vibration_motor_condition): void {
         if (condition === Vibration_motor_condition.on) {
             pins.digitalWritePin(DigitalPin.P12, 1); // เปิดมอเตอร์สั่น
@@ -935,10 +936,10 @@ namespace TinkerBott {
     let _pidThreshold: number = 500;
     let _pidJobId: number = 0;
 
-    //% blockId=pid_set_params block="ตั้งค่า PID Kp %kp Ki %ki Kd %kd"
+    //% blockId=pid_set_params block="set PID Kp %kp Ki %ki Kd %kd"
     //% kp.defl=25 ki.defl=0 kd.defl=15
     //% inlineInputMode=inline
-    //% group="เดินตามเส้น PID"
+    //% group="Line Tracking PID"
     //% weight=100
     export function pidSetParams(kp: number, ki: number, kd: number): void {
         _pidKp = kp;
@@ -946,24 +947,24 @@ namespace TinkerBott {
         _pidKd = kd;
     }
 
-    //% blockId=pid_set_base_speed block="ตั้งค่าความเร็วฐาน PID %speed"
+    //% blockId=pid_set_base_speed block="set PID base speed %speed"
     //% speed.min=0 speed.max=100 speed.defl=40
-    //% group="เดินตามเส้น PID"
+    //% group="Line Tracking PID"
     //% weight=95
     export function pidSetBaseSpeed(speed: number): void {
         _pidBaseSpeed = constrain(speed, 0, 100);
     }
 
-    //% blockId=pid_set_threshold block="ตั้งค่าเกณฑ์ตรวจจับเส้น %threshold"
+    //% blockId=pid_set_threshold block="set line tracking threshold %threshold"
     //% threshold.defl=500
-    //% group="เดินตามเส้น PID"
+    //% group="Line Tracking PID"
     //% weight=90
     export function pidSetThreshold(threshold: number): void {
         _pidThreshold = threshold;
     }
 
-    //% blockId=pid_get_line_position block="อ่านตำแหน่งเส้น (ซ้ายลบ|กลาง0|ขวาบวก)"
-    //% group="เดินตามเส้น PID"
+    //% blockId=pid_get_line_position block="get line position (Left -|Center 0|Right +)"
+    //% group="Line Tracking PID"
     //% weight=85
     export function pidGetLinePosition(): number {
         pins.setPull(AnalogPin.P0, PinPullMode.PullUp);
@@ -1011,8 +1012,8 @@ namespace TinkerBott {
         motors(leftSpeed, rightSpeed);
     }
 
-    //% blockId=pid_start block="เริ่มเดินตามเส้นด้วย PID"
-    //% group="เดินตามเส้น PID"
+    //% blockId=pid_start block="start PID line tracking"
+    //% group="Line Tracking PID"
     //% weight=80
     export function pidStart(): void {
         _pidLastError = 0;
@@ -1021,8 +1022,8 @@ namespace TinkerBott {
         _pidJobId = background.schedule(_pidUpdate, background.Thread.Priority, background.Mode.Repeat, 20);
     }
 
-    //% blockId=pid_stop block="หยุดเดินตามเส้น PID"
-    //% group="เดินตามเส้น PID"
+    //% blockId=pid_stop block="stop PID line tracking"
+    //% group="Line Tracking PID"
     //% weight=75
     export function pidStop(): void {
         _pidRunning = false;
@@ -1033,8 +1034,8 @@ namespace TinkerBott {
         stopcar();
     }
 
-    //% blockId=pid_is_running block="PID กำลังทำงานอยู่?"
-    //% group="เดินตามเส้น PID"
+    //% blockId=pid_is_running block="is PID running?"
+    //% group="Line Tracking PID"
     //% weight=70
     export function pidIsRunning(): boolean {
         return _pidRunning;
@@ -1058,17 +1059,17 @@ namespace TinkerBott {
     let _aiBlockCount: number = 0;
 
     export enum AIMode {
-        //% block="จดจำใบหน้า"
+        //% block="Face Recognition"
         FaceRecognition = 0,
-        //% block="ติดตามวัตถุ"
+        //% block="Object Tracking"
         ObjectTracking = 1,
-        //% block="จดจำวัตถุ"
+        //% block="Object Recognition"
         ObjectRecognition = 2,
-        //% block="เดินตามเส้น"
+        //% block="Line Tracking"
         LineTracking = 3,
-        //% block="จดจำสี"
+        //% block="Color Recognition"
         ColorRecognition = 4,
-        //% block="จดจำแท็ก"
+        //% block="Tag Recognition"
         TagRecognition = 5
     }
 
@@ -1116,8 +1117,8 @@ namespace TinkerBott {
         return false;
     }
 
-    //% blockId=ai_connect block="เชื่อมต่อกล้อง AI (HuskyLens)"
-    //% group="AI ปัญญาประดิษฐ์"
+    //% blockId=ai_connect block="connect AI camera (HuskyLens)"
+    //% group="AI Vision"
     //% weight=100
     export function aiConnect(): void {
         _aiSendCommand(0x2C); // คำสั่ง Knock
@@ -1125,23 +1126,23 @@ namespace TinkerBott {
         _aiConnected = _aiReadResponse();
     }
 
-    //% blockId=ai_is_connected block="กล้อง AI เชื่อมต่อแล้ว?"
-    //% group="AI ปัญญาประดิษฐ์"
+    //% blockId=ai_is_connected block="is AI camera connected?"
+    //% group="AI Vision"
     //% weight=95
     export function aiIsConnected(): boolean {
         return _aiConnected;
     }
 
-    //% blockId=ai_set_mode block="ตั้งค่าโหมด AI เป็น %mode"
-    //% group="AI ปัญญาประดิษฐ์"
+    //% blockId=ai_set_mode block="set AI mode to %mode"
+    //% group="AI Vision"
     //% weight=90
     export function aiSetMode(mode: AIMode): void {
         _aiSendCommand(0x2D, [mode]); // คำสั่ง Switch Algorithm
         basic.pause(100);
     }
 
-    //% blockId=ai_request_data block="ขอข้อมูลจากกล้อง AI"
-    //% group="AI ปัญญาประดิษฐ์"
+    //% blockId=ai_request_data block="request data from AI camera"
+    //% group="AI Vision"
     //% weight=85
     export function aiRequestData(): void {
         _aiSendCommand(0x20); // คำสั่ง Request
@@ -1149,75 +1150,75 @@ namespace TinkerBott {
         _aiReadResponse();
     }
 
-    //% blockId=ai_is_detected block="กล้อง AI ตรวจพบวัตถุ?"
-    //% group="AI ปัญญาประดิษฐ์"
+    //% blockId=ai_is_detected block="is object detected by AI?"
+    //% group="AI Vision"
     //% weight=80
     export function aiIsDetected(): boolean {
         return _aiBlockCount > 0;
     }
 
-    //% blockId=ai_get_x block="ตำแหน่ง X ของวัตถุที่ตรวจพบ"
-    //% group="AI ปัญญาประดิษฐ์"
+    //% blockId=ai_get_x block="detected object X position"
+    //% group="AI Vision"
     //% weight=75
     export function aiGetX(): number {
         return _aiLastX;
     }
 
-    //% blockId=ai_get_y block="ตำแหน่ง Y ของวัตถุที่ตรวจพบ"
-    //% group="AI ปัญญาประดิษฐ์"
+    //% blockId=ai_get_y block="detected object Y position"
+    //% group="AI Vision"
     //% weight=74
     export function aiGetY(): number {
         return _aiLastY;
     }
 
-    //% blockId=ai_get_width block="ความกว้างของวัตถุที่ตรวจพบ"
-    //% group="AI ปัญญาประดิษฐ์"
+    //% blockId=ai_get_width block="detected object width"
+    //% group="AI Vision"
     //% weight=73
     export function aiGetWidth(): number {
         return _aiLastW;
     }
 
-    //% blockId=ai_get_height block="ความสูงของวัตถุที่ตรวจพบ"
-    //% group="AI ปัญญาประดิษฐ์"
+    //% blockId=ai_get_height block="detected object height"
+    //% group="AI Vision"
     //% weight=72
     export function aiGetHeight(): number {
         return _aiLastH;
     }
 
-    //% blockId=ai_get_id block="หมายเลข ID ของวัตถุที่ตรวจพบ"
-    //% group="AI ปัญญาประดิษฐ์"
+    //% blockId=ai_get_id block="detected object ID"
+    //% group="AI Vision"
     //% weight=71
     export function aiGetId(): number {
         return _aiLastId;
     }
 
-    //% blockId=ai_get_count block="จำนวนวัตถุที่ตรวจพบ"
-    //% group="AI ปัญญาประดิษฐ์"
+    //% blockId=ai_get_count block="number of detected objects"
+    //% group="AI Vision"
     //% weight=70
     export function aiGetCount(): number {
         return _aiBlockCount;
     }
 
-    //% blockId=ai_learn_once block="สอนกล้อง AI ให้จดจำเป็น ID %id"
+    //% blockId=ai_learn_once block="teach AI camera to recognize ID %id"
     //% id.defl=1
-    //% group="AI ปัญญาประดิษฐ์"
+    //% group="AI Vision"
     //% weight=65
     export function aiLearnOnce(id: number): void {
         _aiSendCommand(0x36, [id]); // คำสั่ง Learn Once
         basic.pause(200);
     }
 
-    //% blockId=ai_forget_all block="ลบข้อมูลที่สอนทั้งหมดออกจากกล้อง AI"
-    //% group="AI ปัญญาประดิษฐ์"
+    //% blockId=ai_forget_all block="forget all learned data from AI camera"
+    //% group="AI Vision"
     //% weight=60
     export function aiForgetAll(): void {
         _aiSendCommand(0x37); // คำสั่ง Forget
         basic.pause(200);
     }
 
-    //% blockId=ai_follow_object block="ให้รถวิ่งตามวัตถุ ความเร็ว %speed"
+    //% blockId=ai_follow_object block="follow object at speed %speed"
     //% speed.min=0 speed.max=100 speed.defl=40
-    //% group="AI ปัญญาประดิษฐ์"
+    //% group="AI Vision"
     //% weight=55
     export function aiFollowObject(speed: number): void {
         aiRequestData();
