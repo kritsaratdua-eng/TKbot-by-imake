@@ -1,6 +1,6 @@
 {
     "name": "TinkerBott",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "description": "\u0e2a\u0e48\u0e27\u0e19\u0e40\u0e2a\u0e23\u0e34\u0e21\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e23\u0e16\u0e02\u0e2d\u0e07\u0e40\u0e25\u0e48\u0e19 TinkerBott V2.0",
     "license": "MIT",
     "icon": "icon.png",
@@ -23,5 +23,10 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "tsprj",
+    "card": {
+        "title": "TinkerBott",
+        "description": "\u0e2a\u0e48\u0e27\u0e19\u0e40\u0e2a\u0e23\u0e34\u0e21\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e23\u0e16\u0e02\u0e2d\u0e07\u0e40\u0e25\u0e48\u0e19 TinkerBott V2.0",
+        "imageUrl": "https://raw.githubusercontent.com/kritsaratdua-eng/TKbot-by-imake/v2.0.4/icon.png"
+    }
 }
