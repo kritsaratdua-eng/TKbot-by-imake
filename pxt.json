@@ -1,7 +1,7 @@
 {
-    "name": "TinkerBott",
+    "name": "IMAKE",
     "version": "2.0.4",
-    "description": "\u0e2a\u0e48\u0e27\u0e19\u0e40\u0e2a\u0e23\u0e34\u0e21\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e23\u0e16\u0e02\u0e2d\u0e07\u0e40\u0e25\u0e48\u0e19 TinkerBott V2.0",
+    "description": "\u0e2a\u0e48\u0e27\u0e19\u0e40\u0e2a\u0e23\u0e34\u0e21\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e23\u0e16\u0e02\u0e2d\u0e07\u0e40\u0e25\u0e48\u0e19 IMAKE V2.0",
     "license": "MIT",
     "icon": "icon.png",
     "dependencies": {
@@ -12,9 +12,9 @@
         "README.md",
         "main.ts",
         "icon.png",
-        "_locales/th/TinkerBott-strings.json",
-        "_locales/zh-cn/TinkerBott-strings.json",
-        "_locales/zh-tw/TinkerBott-strings.json"
+        "_locales/th/IMAKE-strings.json",
+        "_locales/zh-cn/IMAKE-strings.json",
+        "_locales/zh-tw/IMAKE-strings.json"
     ],
     "testFiles": [
         "test.ts"
@@ -25,8 +25,8 @@
     ],
     "preferredEditor": "tsprj",
     "card": {
-        "title": "TinkerBott",
-        "description": "\u0e2a\u0e48\u0e27\u0e19\u0e40\u0e2a\u0e23\u0e34\u0e21\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e23\u0e16\u0e02\u0e2d\u0e07\u0e40\u0e25\u0e48\u0e19 TinkerBott V2.0",
+        "title": "IMAKE",
+        "description": "\u0e2a\u0e48\u0e27\u0e19\u0e40\u0e2a\u0e23\u0e34\u0e21\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e23\u0e16\u0e02\u0e2d\u0e07\u0e40\u0e25\u0e48\u0e19 IMAKE V2.0",
         "imageUrl": "https://raw.githubusercontent.com/kritsaratdua-eng/TKbot-by-imake/v2.0.4/icon.png"
     }
 }
