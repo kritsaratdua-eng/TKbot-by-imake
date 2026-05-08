@@ -1,0 +1,5 @@
+node_modules/
+pxt_modules/
+built/
+.vscode/
+.DS_Store
