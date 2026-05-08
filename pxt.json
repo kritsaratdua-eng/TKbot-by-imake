@@ -1,8 +1,9 @@
 {
-    "name": "TinkerBott",
-    "version": "2.0.3",
-    "description": "ส่วนเสริมสำหรับรถของเล่น TinkerBott V2.0",
+    "name": "IMAKE",
+    "version": "2.0.5",
+    "description": "ส่วนเสริมสำหรับรถของเล่น IMAKE V2.0",
     "license": "MIT",
+    "icon": "icon.png",
     "dependencies": {
         "core": "*",
         "microphone": "*"
@@ -11,9 +12,9 @@
         "README.md",
         "main.ts",
         "icon.png",
-        "_locales/th/TinkerBott-strings.json",
-        "_locales/zh-cn/TinkerBott-strings.json",
-        "_locales/zh-tw/TinkerBott-strings.json"
+        "_locales/th/IMAKE-strings.json",
+        "_locales/zh-cn/IMAKE-strings.json",
+        "_locales/zh-tw/IMAKE-strings.json"
     ],
     "testFiles": [
         "test.ts"
@@ -23,5 +24,9 @@
         "microbit"
     ],
     "preferredEditor": "tsprj",
-    "icon": "icon.png"
+    "card": {
+        "title": "IMAKE",
+        "description": "ส่วนเสริมสำหรับรถของเล่น IMAKE V2.0",
+        "imageUrl": "https://raw.githubusercontent.com/kritsaratdua-eng/TKbot-by-imake/v2.0.5/icon.png"
+    }
 }

@@ -4,26 +4,27 @@
 // Example AprilTag usage
 
 // เชื่อมต่อกล้อง AI ก่อน
-// TinkerBott.aiConnect()
+// IMAKE.aiConnect()
 
 // ตั้งค่าเป็นโหมด AprilTag
-// TinkerBott.setAprilTagMode()
+// IMAKE.setAprilTagMode()
 
 // ตัวอย่าง: วิ่งตาม AprilTag หมายเลข 1
 // basic.forever(() => {
-//     TinkerBott.followAprilTag(1, 50)
+//     IMAKE.followAprilTag(1, 50)
 //     basic.pause(100)
 // })
 
 // ตัวอย่าง: หยุดเมื่อตรวจพบ AprilTag หมายเลข 2 ในระยะ 20 ซม.
 // basic.forever(() => {
-//     TinkerBott.aiRequestData()
-//     if (TinkerBott.isAprilTagDetected(2)) {
-//         let distance = TinkerBott.getAprilTagDistance(2)
-//         TinkerBott.stopAtAprilTag(2, 20)
-//         TinkerBott.move(TinkerBott.Direction.forward, 30)
+//     IMAKE.aiRequestData()
+//     if (IMAKE.isAprilTagDetected(2)) {
+//         let distance = IMAKE.getAprilTagDistance(2)
+//         IMAKE.stopAtAprilTag(2, 20)
+//         IMAKE.move(IMAKE.Direction.forward, 30)
 //     } else {
-//         TinkerBott.stopcar()
+//         IMAKE.stopcar()
 //     }
 //     basic.pause(100)
 // })
+

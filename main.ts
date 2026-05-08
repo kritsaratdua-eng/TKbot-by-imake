@@ -3,7 +3,7 @@ Shenzhen ACEBOTT Tech
 modified from liusen
 developed by imake
 load dependency
-"TinkerBott": "file:../pxt-TinkerBott"
+"IMAKE": "file:../pxt-IMAKE"
 */
 
 const enum IR_Button {
@@ -254,7 +254,7 @@ namespace background {
 
 
 //% color="#6e5ba4" weight=20 icon="icon.png"
-namespace TinkerBott {
+namespace IMAKE {
 
     // เริ่มต้นตัวรับสัญญาณ IR
     let irState: IrState;
